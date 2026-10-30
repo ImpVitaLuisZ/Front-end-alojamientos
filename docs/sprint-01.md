@@ -67,4 +67,4 @@ El ZIP fuente, cuando corresponda, incluirá fuentes, tests, README, esta docume
 
 ## Seguimiento
 
-[Issue #1: Sprint 1 frontend](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/1). La rama de revisión es `feat/frontend-sprint-01-spa-publica` y la base es `main`. El backend se mantiene en su repositorio independiente.
+[Issue #1: Sprint 1 frontend](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/1) · [PR #2 en borrador](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/2). La rama de revisión es `feat/frontend-sprint-01-spa-publica` y la base es `main`. El backend se mantiene en su repositorio independiente.
