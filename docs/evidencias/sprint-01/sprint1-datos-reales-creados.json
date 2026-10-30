@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-30T06:59:31.286796+00:00",
+  "api": "http://127.0.0.1:5000",
+  "purpose": "Un usuario normal nuevo y un alojamiento ficticio autorizados para Sprint 1",
+  "events": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "http": 200,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/alojamientos",
+      "http": 200,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/usuarios/registro",
+      "http": 201,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/usuarios/login",
+      "http": 200,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/alojamientos",
+      "http": 200,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/alojamientos",
+      "http": 201,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/alojamientos",
+      "http": 200,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/alojamientos/2",
+      "http": 200,
+      "cors": "http://localhost:5173"
+    }
+  ],
+  "credentials_saved": false,
+  "token_saved": false,
+  "local_course_database_confirmed": true,
+  "catalog_count_before": 0,
+  "created_user": {
+    "id": 6,
+    "rol": "usuario"
+  },
+  "login_verified_for_user_id": 6,
+  "created_accommodation": {
+    "id": 2,
+    "usuario_id": 6,
+    "titulo": "PRUEBA LOCAL Sprint 1 - Apartamento",
+    "descripcion": "Alojamiento ficticio creado únicamente para verificar la Entrega 1 del curso. No corresponde a una propiedad disponible.",
+    "precio_noche": 180000.0,
+    "ciudad": "Medellín",
+    "comodidades": []
+  },
+  "catalog_count_after": 1,
+  "public_list_and_detail_verified": true,
+  "outcome": "completed"
+}

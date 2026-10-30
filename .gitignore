@@ -25,3 +25,9 @@ Thumbs.db
 coverage/
 playwright-report/
 test-results/
+
+# Local documentation and review files
+/Frontend-*.md
+/Prompt-*.md
+/INFORME-SPRINT-*.md
+/evidencias-locales/
