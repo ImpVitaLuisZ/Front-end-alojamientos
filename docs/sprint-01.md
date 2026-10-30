@@ -68,3 +68,7 @@ El ZIP fuente, cuando corresponda, incluirá fuentes, tests, README, esta docume
 ## Seguimiento
 
 [Issue #1: Sprint 1 frontend](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/1) · [PR #2 en borrador](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/2). La rama de revisión es `feat/frontend-sprint-01-spa-publica` y la base es `main`. El backend se mantiene en su repositorio independiente.
+
+## Integración confirmada
+
+El 30 de octubre de 2026, con autorización de Luis, PR #2 se marcó listo y se integró a main mediante merge `d0bfb73ace2a3ae7a798aeb068c74cf077c71a8f`. Issue #1 quedó cerrada. No se emitió una revisión APPROVE. No había checks de GitHub configurados; las pruebas locales verificadas eran 9/9 y build correcto. El ZIP de Entrega1 y la rama S1 se conservan en `b5518560906f2608a4ddbe983877feabfa4e458d`. Las menciones anteriores a PR en borrador describen la preparación del snapshot original.

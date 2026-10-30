@@ -1,24 +1,30 @@
 import { API_BASE_URL } from '../config.js';
+import { cerrarSesion, obtenerToken } from '../state/sesion.js';
 
-/**
- * Cliente para rutas públicas. Devuelve el objeto de la API completo,
- * por ejemplo { success: true, data: [...] } o { status: 'ok', ... }.
- */
-export async function obtenerJSON(ruta, { signal } = {}) {
+/** Peticiones públicas y protegidas con el contrato JSON real de Flask. */
+export async function solicitarJSON(ruta, { method = 'GET', body, token, signal } = {}) {
+  const headers = { Accept: 'application/json' };
+  if (body !== undefined) headers['Content-Type'] = 'application/json';
+  if (token) headers.Authorization = `Bearer ${token}`;
+
   let respuesta;
   try {
     respuesta = await fetch(`${API_BASE_URL}${ruta}`, {
-      method: 'GET',
-      headers: { Accept: 'application/json' },
-      signal,
+      method, headers, signal,
+      ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
     });
   } catch (error) {
     if (error?.name === 'AbortError') throw error;
-    const fallo = new Error('No fue posible conectar con Flask. Revise que la API esté iniciada y que CORS permita http://localhost:5173.');
+    const fallo = new Error('No fue posible conectar con Flask. Compruebe el servidor y CORS para http://localhost:5173.');
     fallo.status = 0;
     throw fallo;
   }
 
+  // Invalidar incluso si el cuerpo del 401 no contiene JSON. Una respuesta
+  // antigua no debe borrar una sesión nueva iniciada mientras se esperaba.
+  if (respuesta.status === 401 && token && obtenerToken() === token) cerrarSesion();
+  // Una respuesta sin cuerpo no se interpreta como JSON roto.
+  if (respuesta.status === 204) return null;
   let cuerpo;
   try {
     cuerpo = await respuesta.json();
@@ -28,13 +34,16 @@ export async function obtenerJSON(ruta, { signal } = {}) {
     fallo.status = respuesta.status;
     throw fallo;
   }
-
   if (!respuesta.ok) {
     const fallo = new Error(cuerpo?.error?.message || `Error HTTP ${respuesta.status}.`);
     fallo.status = respuesta.status;
     fallo.details = cuerpo?.error?.details;
     throw fallo;
   }
-
   return cuerpo;
+}
+
+/** Compatibilidad con las cuatro consultas públicas del Sprint 1. */
+export function obtenerJSON(ruta, { signal } = {}) {
+  return solicitarJSON(ruta, { signal });
 }
