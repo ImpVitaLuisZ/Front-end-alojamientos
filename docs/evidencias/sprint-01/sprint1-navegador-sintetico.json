@@ -1,0 +1,80 @@
+{
+  "fecha": "2026-10-30",
+  "tipo": "Pruebas sintéticas en navegador; no demuestran integración real con Flask",
+  "filtros": [
+    {
+      "caso": "ciudad con espacios y mayúsculas",
+      "cantidad": "1 de 2 alojamientos",
+      "get": "GET simulados: 1"
+    },
+    {
+      "caso": "título",
+      "titulos": [
+        "Todos los alojamientos",
+        "PRUEBA Casa tranquila"
+      ],
+      "get": "GET simulados: 1"
+    },
+    {
+      "caso": "sin coincidencias",
+      "cantidad": "0 de 2 alojamientos",
+      "mensaje": "No hay coincidencias para la búsqueda."
+    },
+    {
+      "caso": "limpiar filtro",
+      "cantidad": "2 de 2 alojamientos",
+      "get": "GET simulados: 1"
+    }
+  ],
+  "navegacion": [
+    {
+      "accion": "Atrás",
+      "url": "http://127.0.0.1:5174/alojamientos",
+      "documento": "Documento: 1793336967448"
+    },
+    {
+      "accion": "Adelante",
+      "url": "http://127.0.0.1:5174/alojamientos/41",
+      "documento": "Documento: 1793336967448"
+    }
+  ],
+  "estados": [
+    {
+      "caso": "vacío",
+      "lista": "La API todavía no tiene alojamientos registrados.",
+      "busy": "false"
+    },
+    {
+      "caso": "HTTP 500",
+      "lista": "Atención. Error HTTP sintético 500"
+    },
+    {
+      "caso": "red",
+      "lista": "Atención. No fue posible conectar con Flask. Revise que la API esté iniciada y que CORS permita http://localhost:5173."
+    },
+    {
+      "caso": "carga pendiente",
+      "lista": "Consultando alojamientos…",
+      "busy": "true"
+    },
+    {
+      "caso": "carga resuelta",
+      "cantidad": "2 de 2 alojamientos",
+      "busy": "false"
+    }
+  ],
+  "detalle": {
+    "id": 41,
+    "titulo": "PRUEBA Apartamento central",
+    "ciudad": "Medellín",
+    "precio": 180000,
+    "comodidades": [
+      "WiFi & escritorio"
+    ],
+    "recargaDirecta": "verificada"
+  },
+  "noEncontrado": {
+    "detalle999": "Alojamiento no encontrado",
+    "rutaReservas": "Página no encontrada"
+  }
+}

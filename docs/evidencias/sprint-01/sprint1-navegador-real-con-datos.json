@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-30",
+  "source": "API Flask real en localhost:5000; registro ficticio persistido con autorización",
+  "accommodationId": 2,
+  "filters": [
+    {
+      "caso": "título",
+      "cantidad": "1 de 1 alojamientos",
+      "tarjeta": "CATÁLOGO\nMEDELLÍN\nPRUEBA LOCAL Sprint 1 - Apartamento\n\nAlojamiento ficticio creado únicamente para verificar la Entrega 1 del curso. No corresponde a una propiedad disponible.\n\n$ 180.000 / noche\nVer detalle "
+    },
+    {
+      "caso": "ciudad con espacios y mayúsculas",
+      "cantidad": "1 de 1 alojamientos"
+    },
+    {
+      "caso": "sin coincidencias",
+      "cantidad": "0 de 1 alojamientos",
+      "mensaje": "No hay coincidencias para la búsqueda."
+    },
+    {
+      "caso": "limpiar filtro",
+      "cantidad": "1 de 1 alojamientos"
+    }
+  ],
+  "detail": "DETALLE DEL ALOJAMIENTO\nMEDELLÍN\nPRUEBA LOCAL Sprint 1 - Apartamento\n\nAlojamiento ficticio creado únicamente para verificar la Entrega 1 del curso. No corresponde a una propiedad disponible.\n\nComodidades del alojamiento\n\nEste alojamiento todavía no tiene comodidades asociadas.\n\nPRECIO DE REFERENCIA\n$ 180.000\n\npor noche\n\nPrecio informativo del alojamiento.",
+  "directUrlReloadVerified": true
+}

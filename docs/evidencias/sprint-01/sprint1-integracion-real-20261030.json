@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-30",
+  "mode": "GET reales; sin escrituras",
+  "results": [
+    {
+      "path": "/health",
+      "http": 200,
+      "cors": "http://localhost:5173",
+      "service": "alojamientos-api",
+      "status": "ok",
+      "version": "v1"
+    },
+    {
+      "path": "/api/v1/alojamientos",
+      "http": 200,
+      "cors": "http://localhost:5173",
+      "count": 0
+    },
+    {
+      "path": "/api/v1/comodidades",
+      "http": 200,
+      "cors": "http://localhost:5173",
+      "count": 0
+    },
+    {
+      "path": "/api/v1/alojamientos/1",
+      "http": 404,
+      "cors": "http://localhost:5173"
+    }
+  ]
+}
