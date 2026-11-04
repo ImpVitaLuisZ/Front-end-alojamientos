@@ -1,0 +1,59 @@
+{
+  "fecha": "2026-11-04",
+  "base_s2": "d31da64148ba38a2338e44514ec7ed5132b7f77d",
+  "regresion_antes": {
+    "total": 23,
+    "aprobadas": 23
+  },
+  "red": "Fallos esperados por tres modulos aun ausentes y tres rutas/destinos no implementados.",
+  "green": {
+    "total": 37,
+    "aprobadas": 37,
+    "fallidas": 0
+  },
+  "build": "Vite 8.3.5, 98 modulos, correcto",
+  "sintaxis": "Todos los JS de src/js y tests aprobados",
+  "migracion": "003 (head)",
+  "http_sin_sesion": [
+    {
+      "metodo": "GET",
+      "ruta": "/health",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos",
+      "http": 200,
+      "cantidad": 1
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200,
+      "fixture_sprint1_conservado": true
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/comodidades",
+      "http": 200,
+      "cantidad": 0
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/alojamientos",
+      "http": 401
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/comodidades",
+      "http": 401
+    }
+  ],
+  "navegador_anonimo": [
+    "Crear redirige a /login?next=%2Falojamientos%2Fnuevo",
+    "Menu colapsado abre y se cierra al navegar",
+    "Catalogo real carga un registro y conserva alojamiento 2 de Sprint 1"
+  ],
+  "pendiente": "CRUD y permisos autenticados, comodidades reales, confirmacion/borrado, capturas y responsive.",
+  "datos_modificados_en_s3": false
+}

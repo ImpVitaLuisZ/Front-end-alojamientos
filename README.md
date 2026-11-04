@@ -1,6 +1,6 @@
-# Frontend Alojamientos — Sprint 1
+# Frontend Alojamientos — Sprints 1, 2 y 3
 
-Catálogo público SPA construido con HTML5, CSS3, JavaScript ES Modules, Bootstrap 5 y Vite. Consume la API Flask del repositorio independiente `api-alojamientos`, correspondiente al Sprint 3 del backend.
+SPA de catálogo público, autenticación y gestión de alojamientos construida con HTML5, CSS3, JavaScript ES Modules, Bootstrap 5 y Vite. Consume la API Flask del repositorio independiente `api-alojamientos`, correspondiente al Sprint 3 del backend.
 
 ## Preparación
 
@@ -30,7 +30,7 @@ No agregue `/api/v1` a esta URL: `/health` vive en la raíz. Reinicie Vite cuand
 | --- | --- |
 | `npm ci` | Instalar las versiones fijadas en `package-lock.json` |
 | `npm run dev` | Servir la SPA en `localhost:5173`, con puerto estricto |
-| `npm test` | Ejecutar 23 pruebas: 9 de Sprint 1 y 14 de Sprint 2 |
+| `npm test` | Ejecutar 37 pruebas: 9 de Sprint 1, 14 de Sprint 2 y 14 de Sprint 3 |
 | `npm run build` | Generar la distribución en `dist/` |
 | `npm run preview` | Revisar localmente la distribución generada |
 
@@ -57,7 +57,7 @@ Los datos se obtienen de Flask: no hay registros simulados en la aplicación. `d
 
 Incluye cinco vistas públicas, 404, navegación con History API, Atrás/Adelante, filtro local, estados de carga/vacío/error y cancelación de solicitudes al cambiar de vista. Los textos de la API se escapan antes de insertarse como HTML y los IDs de tarjetas se validan. Las ilustraciones CSS son decorativas; no representan fotografías de los alojamientos.
 
-Sprint 2 agrega registro, login, JWT en sessionStorage, perfil y listado administrativo de solo lectura. No incluye CRUD de alojamientos, reservas, pagos ni subida de fotos. El navegador no accede a MySQL; Flask valida el JWT y el rol vigente.
+Sprint 2 agrega registro, login, JWT en sessionStorage, perfil y listado administrativo de solo lectura. Sprint 3 incorpora CRUD de alojamientos y comodidades. No incluye reservas, pagos ni subida de fotos. El navegador no accede a MySQL; Flask valida el JWT y el rol vigente.
 
 `VITE_*` es visible en el navegador: nunca debe contener secretos. Git excluye `.env`, `node_modules/`, `dist/`, los documentos internos y las evidencias locales. `package-lock.json` sí forma parte del código entregable.
 
@@ -73,7 +73,7 @@ Sprint 2 agrega registro, login, JWT en sessionStorage, perfil y listado adminis
 - `src/js/router/`: resolución de rutas, History API y cancelación.
 - `src/js/utils/`: escape HTML, moneda COP y resúmenes.
 - `src/css/main.css`: diseño y adaptación móvil.
-- `tests/`: siete archivos; 9 pruebas públicas y 14 de autenticación, sesión, validación y permisos.
+- `tests/`: once archivos; 37 pruebas de vistas públicas, autenticación, servicios CRUD, formularios y permisos.
 
 ## Diagnóstico y revisión manual
 
@@ -106,4 +106,24 @@ Sin sesión, las rutas privadas llevan a login. La Navbar cambia con la sesión 
 
 Un 401 de la petición protegida correspondiente a la sesión actual la elimina; un 401 del login público o un 403 conserva la sesión existente. Logout limpia la sesión local: no revoca el JWT en el servidor. No existen endpoints de logout, refresh, edición de perfil ni cambio de roles en esta interfaz. Los errores 400/409 se muestran en los formularios. `next` solo permite destinos privados conocidos.
 
-Las 23 pruebas y el build pasaron nuevamente el 4 de noviembre de 2026. Se verificaron registro, login, perfil y permisos mediante HTTP real. En el navegador real se comprobaron login, perfil, recarga, Admin, logout y errores 401/409. La [verificación de Sprint 2](docs/sprint-02.md) distingue cada alcance y contiene las evidencias. [Issue #3](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/3), rama `feat/frontend-sprint-02-autenticacion`; revisión e integración del PR pendientes.
+Las 23 pruebas y el build pasaron nuevamente el 4 de noviembre de 2026. Se verificaron registro, login, perfil y permisos mediante HTTP real. En el navegador real se comprobaron login, perfil, recarga, Admin, logout y errores 401/409. La [verificación de Sprint 2](docs/sprint-02.md) distingue cada alcance y contiene las evidencias. [Issue #3](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/3), rama `feat/frontend-sprint-02-autenticacion`; integrado mediante [PR #4](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/4).
+
+## Gestión de alojamientos y comodidades (Sprint 3)
+
+| Vista SPA | Operación de Flask | Permiso |
+| --- | --- | --- |
+| `/mis-alojamientos` | GET público `/api/v1/alojamientos`, filtrado local por usuario_id | Sesión para la vista |
+| `/alojamientos/nuevo` | POST `/api/v1/alojamientos` | JWT |
+| `/alojamientos/:id/editar` | GET detalle, PATCH y DELETE `/api/v1/alojamientos/:id` | Propietario o Admin para modificar |
+| Edición: Guardar comodidades | PATCH `/api/v1/alojamientos/:id/comodidades` | Propietario o Admin |
+| `/admin/comodidades/nueva` | POST `/api/v1/comodidades` | Admin |
+
+El formulario envía solo titulo, descripcion, ciudad y precio_noche. Flask asigna usuario_id desde el JWT. El precio debe ser positivo, con punto decimal y hasta dos decimales. El formulario compartido se precarga al editar; guardar campos y guardar comodidades son acciones independientes.
+
+La lista comodidades_ids reemplaza todas las asociaciones; `[]` las retira. No elimina comodidades del catálogo. La eliminación de un alojamiento exige confirmación y procesa 204 sin intentar leer JSON. Un 403 conserva la sesión, un 401 protegido la limpia y los mensajes 400/404/409 permiten corregir la operación.
+
+Mis alojamientos filtra un catálogo público: ese filtro y ocultar enlaces no conceden ni protegen permisos. Flask autoriza cada cambio. Se necesitan cuentas locales de prueba normal y Admin para verificar los dos roles; la promoción pertenece al backend. Nunca publique contraseñas ni copie su configuración de MySQL al frontend.
+
+La implementación sigue el tutorial estudiantil TUTORIAL-03.md: servicios API, utils/gestion.js, AlojamientoForm y ComodidadesSelector, cuatro páginas nuevas y ampliación de rutas/Navbar/detalle. Se conservan http.js, router.js, sesion.js, servicios anteriores, dependencias y las 23 pruebas previas.
+
+37/37 pruebas, sintaxis y build aprobados el 4 de noviembre. La integración CRUD real está pendiente de completar; consulte [Sprint 3](docs/sprint-03.md) y [Issue #5](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/5). Las pruebas con fetch simulado no demuestran cambios en MySQL.

@@ -60,3 +60,7 @@ La cuenta anterior 6 permanece normal. Se creó una única cuenta adicional, 7, 
 El ZIP de Entrega2 se genera desde el commit publicado, con README, fuentes, tests y estas evidencias; excluye .env, node_modules, dist y archivos privados. La guía externa LEEME-ENTREGA2.md registra el commit, PR, nombre del ZIP y su verificación. Entrega1 conserva su snapshot original. Este sprint no incluye CRUD ni comodidades administrativas de Sprint 3.
 
 Las rúbricas originales de Trabajos 3 y 4 se leyeron completas: Trabajo 3 añade CRUD/comodidades con 37 pruebas y operaciones reales. Trabajo 4 consolida S1–S3 sin funciones nuevas: README/docs completos, historial y PR integrados en main, evidencias, ZIP equivalente a GitHub y prueba de instalación independiente. La publicación exigida es GitHub, sin hosting obligatorio.
+
+## Integración posterior
+
+PR #4 revisado e integrado el 4 de noviembre de 2026, con autorización específica de Luis. Merge en main: d31da64148ba38a2338e44514ec7ed5132b7f77d. Issue #3 cerrado. Sin revisión formal APPROVE. Las 23 pruebas se ejecutaron nuevamente al comenzar Sprint 3 y pasaron. El ZIP de Entrega2 conserva e7fe1d6cb618cc830d732cd8bc2c81af5b43305a; no se reemplaza por un snapshot de Sprint 3.
