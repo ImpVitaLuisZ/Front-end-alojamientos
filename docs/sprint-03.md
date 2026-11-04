@@ -1,6 +1,6 @@
 # Sprint 3: CRUD y comodidades
 
-Estado al 4 de noviembre de 2026: código implementado; 37/37 pruebas, sintaxis y build correctos. Creación y edición del propietario verificadas con datos reales, además de vistas móviles. PR #6 publicado en borrador; faltan Admin, relaciones, borrado, revisión y ZIP final. No se presenta un mock como evidencia de MySQL.
+Estado al 4 de noviembre de 2026: código implementado; 37/37 pruebas, sintaxis y build correctos. Verificados con Flask/MySQL reales: propietario, Admin, rechazo de usuario ajeno, comodidades, asociaciones y borrados 204/404. La comprobación visual de Confirmar/Cancelar sigue pendiente por bloqueo del navegador de pruebas. PR #6 permanece en borrador para revisión; no está integrado. El ZIP de esta versión conserva expresamente esa limitación. No se presenta un mock como evidencia de MySQL.
 
 ## Base y proceso
 
@@ -30,14 +30,16 @@ Flujo: formulario → validación y cuatro campos normalizados → servicio JS �
 - [x] Sintaxis de todos los JS, build y diff verificados.
 - [x] MySQL en migración 003 y contratos reales leídos.
 - [x] Ruta de creación sin sesión redirige al login con next local.
-- [ ] CRUD real con propietario y Admin; rechazo real 403 del ajeno.
-- [ ] Comodidades 201/409, asociación/reemplazo/[] y error 400.
-- [ ] Confirmación de borrado, 204 y consulta posterior 404.
+- [x] CRUD real con propietario y Admin; rechazo real 403 del ajeno.
+- [x] Comodidades 201/409, asociación/reemplazo/[] y error 400.
+- [x] DELETE real 204 y consulta posterior 404 para los dos registros desechables.
+- [ ] Confirmar y Cancelar en el diálogo del navegador; limitación descrita abajo.
 - [x] Capturas reales de creación, Mis alojamientos y edición móvil a 390 px.
-- [ ] Capturas de los recorridos Admin y comodidades restantes.
+- [x] Capturas del aviso 409 de Admin, permisos y detalle con comodidades.
 - [x] Commit, push y [PR #6 en borrador](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/6), enlazado a Issue #5.
 - [ ] Revisión e integración después de completar las pruebas reales.
-- [ ] ZIP de Entrega3 y presentación por Luis en Q10.
+- [ ] Revisar el ZIP de Entrega3 contra su VERIFICACION-ENTREGA3.json y cerrar la comprobación manual pendiente.
+- [ ] Presentación por Luis en Q10 después de entender y revisar el código.
 
 Se conserva el alojamiento ficticio de Sprint 1. Las pruebas nuevas deben utilizar registros claramente identificados como desechables y cuentas de prueba autorizadas. No se incluyen reservas, pagos ni subida de fotos. El Trabajo 4 consolidará lo integrado sin funciones nuevas.
 
@@ -51,7 +53,30 @@ A 390 × 844 px se detectó que la clase h-100 de la tarjeta ocupaba toda la col
 
 [Evidencia real del propietario](evidencias/sprint-03/propietario-real-20261104.json), [creación](evidencias/sprint-03/sprint3-creado-real-20261104.png), [lista móvil](evidencias/sprint-03/sprint3-mis-alojamientos-movil-real-20261104.png) y [edición móvil](evidencias/sprint-03/sprint3-edicion-movil-real-20261104.png).
 
-La automatización del navegador se atascó al intentar abrir window.confirm. No se observó DELETE en el log y GET del alojamiento 3 continuó respondiendo 200. Esa confirmación y el borrado todavía no se marcan como aprobados. El registro se conserva para terminar la prueba de comodidades antes de eliminarlo.
+## Integración final de Admin, comodidades y borrado
+
+La autorización específica permitió restablecer las contraseñas temporales de las cuentas locales 6 y 7 y comprobar login 200. Se conservaron sus roles normal y Admin, respectivamente. No se creó ninguna cuenta adicional ni se modificaron los usuarios anteriores. Las contraseñas y JWT no se publican ni se guardan en la entrega.
+
+| Comprobación real | Resultado |
+| --- | --- |
+| Admin crea comodidad WiFi; repite el nombre; crea Cocina | 201, 409 con aviso visible y 201; IDs 2 y 3 |
+| Admin crea segundo alojamiento desechable | 201, ID 4 y propietario 7 |
+| Admin modifica precio del alojamiento 3 de otro propietario | 200, precio 185000 y propietario 6 conservado |
+| Usuario 6 intenta PATCH, DELETE y asociaciones sobre 4 | 403 en los tres casos; sesión conservada |
+| Usuario normal intenta crear comodidad | 403 |
+| Formulario incompleto, precio cero, comodidad inexistente | 400 |
+| Propietario marca las dos casillas y guarda | PATCH 200; GET y detalle público muestran ambas |
+| Volver a editar y desmarcar todas | Casillas persistentes al volver; PATCH 200 y GET con [] |
+| Eliminar registros desechables 3 y 4 desde servicios JS | DELETE 204 sin JSON; GET posterior 404 para ambos |
+| Consultar registro 2 de Sprint 1 | 200 y contenido idéntico a la línea base |
+
+Quedan las comodidades ficticias 2 y 3 en el catálogo. No se inventó una ruta de borrado de comodidades ni se alteró el esquema. Las capturas del alojamiento 3 corresponden al registro real antes de su limpieza autorizada; ahora ese ID responde 404.
+
+La herramienta del navegador se bloqueó al abrir `window.confirm`: no logró observar el diálogo. Un intento anterior terminó tardíamente a las 17:41:44 local con DELETE 401 por sesión caducada; el registro seguía presente después. El nuevo intento también agotó tiempo. Por eso se completó el borrado mediante los servicios JS reales con login legítimo, sin cambiar la confirmación del código. **No se afirma que Confirmar/Cancelar y la redirección posterior hayan sido verificados visualmente.** El cierre de esa pestaña también agotó tiempo; su estado de cierre es incierto. Los secretos temporales fueron descartados.
+
+Pendiente manual concreto: con una cuenta de prueba conocida y un nuevo registro expresamente desechable, pulsar Eliminar, cancelar y comprobar que no hay DELETE; volver a pulsar, aceptar y comprobar DELETE 204, vuelta a Mis alojamientos y GET 404. No usar el alojamiento 2 de Sprint 1 para esa prueba. La preparación de otra cuenta o registro no se realiza automáticamente en esta entrega.
+
+[Resultados y log HTTP sanitizado](evidencias/sprint-03/integracion-real-20261104.json), [aviso de duplicado](evidencias/sprint-03/sprint3-comodidad-409-real-20261104.png), [permiso sobre alojamiento ajeno](evidencias/sprint-03/sprint3-permiso-ajeno-real-20261104.png) y [detalle con comodidades](evidencias/sprint-03/sprint3-comodidades-detalle-real-20261104.png).
 
 ## Recorrido para entender el código
 

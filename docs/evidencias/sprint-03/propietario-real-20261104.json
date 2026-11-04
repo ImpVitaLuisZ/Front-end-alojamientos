@@ -273,11 +273,13 @@
     "get_3_posterior": 200,
     "recorrido_verificado": false
   },
-  "pendientes": [
+  "credenciales": "Ninguna contraseña o JWT en evidencia; traspaso cifrado temporal eliminado tras lectura.",
+  "alcance_temporal": "Registro de la fase inicial hasta 17:21:20 local. No representa el estado final; ver integracion-real-20261104.json.",
+  "pendientes_al_registrar": [
     "Acceso Admin autorizado para continuar pruebas",
     "Segundo alojamiento desechable para comprobar usuario ajeno",
     "Comodidades 201/409, asociar y retirar",
     "DELETE real 204 y 404 posterior; revision de confirmacion del navegador"
   ],
-  "credenciales": "Ninguna contraseña o JWT en evidencia; traspaso cifrado temporal eliminado tras lectura."
+  "actualizacion_final": "Admin, permisos, comodidades y DELETE 204/404 verificados posteriormente; permanece pendiente confirmar/cancelar visualmente el diálogo."
 }
