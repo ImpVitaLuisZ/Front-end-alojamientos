@@ -1,0 +1,555 @@
+{
+  "fecha": "2026-11-04",
+  "tipo": "Verificación real local Flask/MySQL; sin datos simulados en la aplicación",
+  "codigo_verificado": "d2d8a41c1aa048c4734b776a82fbfe582fa974d3",
+  "cuentas": {
+    "normal_id": 6,
+    "admin_id": 7,
+    "roles": "conservados",
+    "passwords": "restablecimientos autorizados; secretos solo en memoria, descartados al finalizar"
+  },
+  "alojamientos": {
+    "propietario_desechable": 3,
+    "admin_desechable": 4,
+    "sprint1_conservado": 2,
+    "estado_final": "Solo queda 2; comparación completa con la línea base sin cambios"
+  },
+  "comodidades": [
+    {
+      "id": 2,
+      "nombre": "PRUEBA LOCAL S3 WiFi 20261104"
+    },
+    {
+      "id": 3,
+      "nombre": "PRUEBA LOCAL S3 Cocina 20261104"
+    }
+  ],
+  "navegador_real": [
+    "Login Admin 7 y perfil con rol admin; formulario Nueva comodidad disponible.",
+    "Crear WiFi 201, repetir nombre 409 con aviso visible, crear Cocina 201.",
+    "Login normal 6; editar alojamiento ajeno 4 muestra aviso sin formulario.",
+    "Marcar comodidades 2 y 3 y Guardar: PATCH 200; GET y detalle público muestran ambas.",
+    "Volver a Editar conserva las dos casillas marcadas; desmarcar todas y Guardar: PATCH 200; GET devuelve comodidades []."
+  ],
+  "http_real_servicios_js": [
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos",
+      "http": 200
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/alojamientos",
+      "http": 201
+    },
+    {
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 403
+    },
+    {
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 403
+    },
+    {
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/4/comodidades",
+      "http": 403
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/comodidades",
+      "http": 403
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/alojamientos",
+      "http": 400
+    },
+    {
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 400
+    },
+    {
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3/comodidades",
+      "http": 400
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 204
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 404
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 404
+    },
+    {
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 200
+    },
+    {
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 204
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 404
+    },
+    {
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200
+    }
+  ],
+  "permisos": {
+    "admin_patch_ajeno": 200,
+    "usuario_patch_ajeno": 403,
+    "usuario_delete_ajeno": 403,
+    "usuario_asociacion_ajena": 403,
+    "usuario_crear_comodidad": 403,
+    "sesion_tras_403": "conservada"
+  },
+  "validaciones": {
+    "campos_ausentes": 400,
+    "precio_cero": 400,
+    "comodidad_inexistente": 400
+  },
+  "borrado": {
+    "via": "Servicios JS reales, por limitación del control del diálogo del navegador",
+    "delete_3": 204,
+    "get_3": 404,
+    "delete_4": 204,
+    "get_4": 404,
+    "confirmar_cancelar_ui": "Pendiente: la herramienta no expuso window.confirm y agotó tiempo; no se afirma recorrido visual completo"
+  },
+  "observacion_401": {
+    "hora_local": "17:41:44",
+    "ruta": "DELETE /api/v1/alojamientos/3",
+    "estado": 401,
+    "resultado": "La acción anterior terminó tardíamente con sesión caducada; el registro seguía presente a las 18:12:58. No se atribuye una aceptación del diálogo no observada."
+  },
+  "log_http_sanitizado": [
+    {
+      "hora_local": "17:41:44",
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 401
+    },
+    {
+      "hora_local": "18:12:58",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:14:13",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200
+    },
+    {
+      "hora_local": "18:14:15",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:14:15",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:14:34",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:14:34",
+      "metodo": "GET",
+      "ruta": "/api/v1/usuarios/perfil",
+      "http": 200
+    },
+    {
+      "hora_local": "18:17:46",
+      "metodo": "GET",
+      "ruta": "/api/v1/comodidades",
+      "http": 200
+    },
+    {
+      "hora_local": "18:17:57",
+      "metodo": "POST",
+      "ruta": "/api/v1/comodidades",
+      "http": 201
+    },
+    {
+      "hora_local": "18:18:04",
+      "metodo": "POST",
+      "ruta": "/api/v1/comodidades",
+      "http": 409
+    },
+    {
+      "hora_local": "18:18:10",
+      "metodo": "POST",
+      "ruta": "/api/v1/comodidades",
+      "http": 201
+    },
+    {
+      "hora_local": "18:18:18",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "POST",
+      "ruta": "/api/v1/alojamientos",
+      "http": 201
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 403
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 403
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/4/comodidades",
+      "http": 403
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "POST",
+      "ruta": "/api/v1/comodidades",
+      "http": 403
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "POST",
+      "ruta": "/api/v1/alojamientos",
+      "http": 400
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 400
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3/comodidades",
+      "http": 400
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:19",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:38",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:38",
+      "metodo": "GET",
+      "ruta": "/api/v1/usuarios/perfil",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:44",
+      "metodo": "GET",
+      "ruta": "/api/v1/comodidades",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:44",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:49",
+      "metodo": "GET",
+      "ruta": "/api/v1/comodidades",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:49",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:18:54",
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3/comodidades",
+      "http": 200
+    },
+    {
+      "hora_local": "18:19:02",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:19:09",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:19:15",
+      "metodo": "GET",
+      "ruta": "/api/v1/comodidades",
+      "http": 200
+    },
+    {
+      "hora_local": "18:19:15",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:19:22",
+      "metodo": "PATCH",
+      "ruta": "/api/v1/alojamientos/3/comodidades",
+      "http": 200
+    },
+    {
+      "hora_local": "18:19:32",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:20:14",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:20:14",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 200
+    },
+    {
+      "hora_local": "18:20:14",
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 204
+    },
+    {
+      "hora_local": "18:20:14",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 404
+    },
+    {
+      "hora_local": "18:20:26",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 404
+    },
+    {
+      "hora_local": "18:20:26",
+      "metodo": "POST",
+      "ruta": "/api/v1/usuarios/login",
+      "http": 200
+    },
+    {
+      "hora_local": "18:20:26",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 200
+    },
+    {
+      "hora_local": "18:20:26",
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 204
+    },
+    {
+      "hora_local": "18:20:26",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 404
+    },
+    {
+      "hora_local": "18:20:26",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200
+    },
+    {
+      "hora_local": "18:22:36",
+      "metodo": "DELETE",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 404
+    },
+    {
+      "hora_local": "18:22:55",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos",
+      "http": 200
+    },
+    {
+      "hora_local": "18:22:55",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/3",
+      "http": 404
+    },
+    {
+      "hora_local": "18:22:55",
+      "metodo": "GET",
+      "ruta": "/api/v1/alojamientos/4",
+      "http": 404
+    },
+    {
+      "hora_local": "18:22:55",
+      "metodo": "GET",
+      "ruta": "/api/v1/comodidades",
+      "http": 200
+    }
+  ],
+  "limitaciones": [
+    "Confirmar y Cancelar en window.confirm requieren revisión manual; los DELETE reales sí quedaron comprobados.",
+    "El cierre de la pestaña de automatización agotó tiempo: no se afirma cierre confirmado. Las credenciales en RAM se descartaron.",
+    "Las comodidades 2 y 3 permanecen como catálogo ficticio; el backend no expone borrado de comodidades."
+  ],
+  "capturas": [
+    "sprint3-comodidad-409-real-20261104.png",
+    "sprint3-permiso-ajeno-real-20261104.png",
+    "sprint3-comodidades-detalle-real-20261104.png"
+  ],
+  "pruebas_automatizadas": {
+    "aprobadas": 37,
+    "fallidas": 0,
+    "build": "correcto después del último cambio de código; no se repitió por cambios solo documentales"
+  },
+  "publicacion": "PR 6 en borrador; integración y presentación pendientes"
+}
