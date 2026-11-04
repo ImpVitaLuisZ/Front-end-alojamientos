@@ -30,7 +30,7 @@ No agregue `/api/v1` a esta URL: `/health` vive en la raíz. Reinicie Vite cuand
 | --- | --- |
 | `npm ci` | Instalar las versiones fijadas en `package-lock.json` |
 | `npm run dev` | Servir la SPA en `localhost:5173`, con puerto estricto |
-| `npm test` | Ejecutar 9 pruebas con el runner integrado de Node |
+| `npm test` | Ejecutar 23 pruebas: 9 de Sprint 1 y 14 de Sprint 2 |
 | `npm run build` | Generar la distribución en `dist/` |
 | `npm run preview` | Revisar localmente la distribución generada |
 
@@ -57,7 +57,7 @@ Los datos se obtienen de Flask: no hay registros simulados en la aplicación. `d
 
 Incluye cinco vistas públicas, 404, navegación con History API, Atrás/Adelante, filtro local, estados de carga/vacío/error y cancelación de solicitudes al cambiar de vista. Los textos de la API se escapan antes de insertarse como HTML y los IDs de tarjetas se validan. Las ilustraciones CSS son decorativas; no representan fotografías de los alojamientos.
 
-No incluye login, JWT, registro, CRUD, reservas, pagos ni subida de fotos. El navegador solo realiza los GET públicos documentados y no accede a MySQL.
+Sprint 2 agrega registro, login, JWT en sessionStorage, perfil y listado administrativo de solo lectura. No incluye CRUD de alojamientos, reservas, pagos ni subida de fotos. El navegador no accede a MySQL; Flask valida el JWT y el rol vigente.
 
 `VITE_*` es visible en el navegador: nunca debe contener secretos. Git excluye `.env`, `node_modules/`, `dist/`, los documentos internos y las evidencias locales. `package-lock.json` sí forma parte del código entregable.
 
@@ -66,13 +66,14 @@ No incluye login, JWT, registro, CRUD, reservas, pagos ni subida de fotos. El na
 - `index.html`: único documento de la SPA.
 - `src/js/main.js`: Bootstrap, estilos e inicio del router.
 - `src/js/config.js`: origen público de Flask.
-- `src/js/api/`: cliente HTTP y cuatro consultas públicas.
+- `src/js/api/`: cliente HTTP, consultas públicas y contratos de autenticación.
+- `src/js/state/sesion.js`: sesión por pestaña y notificación de cambios.
 - `src/js/components/`: navegación, pie, tarjetas y estados.
-- `src/js/pages/`: cinco páginas públicas y 404.
+- `src/js/pages/`: vistas públicas, registro, login, perfil y administración.
 - `src/js/router/`: resolución de rutas, History API y cancelación.
 - `src/js/utils/`: escape HTML, moneda COP y resúmenes.
 - `src/css/main.css`: diseño y adaptación móvil.
-- `tests/`: tres archivos, con nueve pruebas oficiales del tutorial.
+- `tests/`: siete archivos; 9 pruebas públicas y 14 de autenticación, sesión, validación y permisos.
 
 ## Diagnóstico y revisión manual
 
@@ -89,3 +90,20 @@ Vite resuelve las rutas directas en desarrollo. Un futuro hosting necesitará re
 ## Entrega 1
 
 La [lista de entrega y el inventario de evidencias](docs/sprint-01.md) distinguen las pruebas aprobadas, la integración real y lo pendiente antes de publicar. El flujo con un alojamiento de práctica obtenido de Flask ya está verificado. La entrega se revisa mediante un PR hacia main en [Front-end-alojamientos](https://github.com/ImpVitaLuisZ/Front-end-alojamientos); el backend sigue separado.
+
+## Autenticación y sesión (Sprint 2)
+
+| Vista SPA | Petición de Flask | Acceso |
+| --- | --- | --- |
+| `/registro` | POST `/api/v1/usuarios/registro` | Público |
+| `/login` | POST `/api/v1/usuarios/login` | Público |
+| `/perfil` | GET `/api/v1/usuarios/perfil` | Bearer JWT |
+| `/admin/usuarios` | GET `/api/v1/admin/usuarios` | Bearer JWT y rol admin |
+
+Registro y login envían únicamente `correo` y `contrasena`. La confirmación de contraseña se valida en la interfaz. Registro devuelve el usuario, no un token: después se inicia sesión. El login devuelve `data.access_token` y `data.usuario`; la pestaña guarda únicamente el token y los datos públicos `id`, `correo`, `rol`. No se guardan contraseñas.
+
+Sin sesión, las rutas privadas llevan a login. La Navbar cambia con la sesión y el rol del último login. Un usuario normal ve acceso restringido al abrir la dirección administrativa; Flask comprueba de forma independiente cada permiso. El perfil puede mostrar «Sin registrar» en sus campos opcionales.
+
+Un 401 de la petición protegida correspondiente a la sesión actual la elimina; un 401 del login público o un 403 conserva la sesión existente. Logout limpia la sesión local: no revoca el JWT en el servidor. No existen endpoints de logout, refresh, edición de perfil ni cambio de roles en esta interfaz. Los errores 400/409 se muestran en los formularios. `next` solo permite destinos privados conocidos.
+
+Las 23 pruebas y el build pasaron nuevamente el 4 de noviembre de 2026. Se verificaron registro, login, perfil y permisos mediante HTTP real. En el navegador real se comprobaron login, perfil, recarga, Admin, logout y errores 401/409. La [verificación de Sprint 2](docs/sprint-02.md) distingue cada alcance y contiene las evidencias. [Issue #3](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/3), rama `feat/frontend-sprint-02-autenticacion`; revisión e integración del PR pendientes.

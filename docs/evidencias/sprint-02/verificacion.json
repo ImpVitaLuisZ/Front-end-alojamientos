@@ -1,0 +1,66 @@
+{
+  "fecha": "2026-10-30",
+  "base_main": "d0bfb73ace2a3ae7a798aeb068c74cf077c71a8f",
+  "rama": "feat/frontend-sprint-02-autenticacion",
+  "issue": "https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/3",
+  "automatizadas": {
+    "comando": "npm test",
+    "exit_code": 0,
+    "total": 23,
+    "aprobadas": 23,
+    "fallidas": 0,
+    "sprint1": 9,
+    "sprint2": 14,
+    "fetch": "simulado; sin MySQL"
+  },
+  "build": {
+    "comando": "npm run build",
+    "exit_code": 0,
+    "vite": "8.3.5",
+    "modulos": 89
+  },
+  "diff_check": {
+    "comando": "git diff --check",
+    "exit_code": 0
+  },
+  "navegador_sintetico": {
+    "origen": "http://127.0.0.1:5174",
+    "aviso_visible": true,
+    "registra_en_MySQL": false,
+    "casos_aprobados": [
+      "Perfil sin sesión redirige a /login?next=%2Fperfil sin peticiones.",
+      "Confirmación distinta muestra error y no envía solicitud.",
+      "Registro 201 muestra éxito, limpia formulario y no inicia sesión.",
+      "Payload de registro contiene correo/contrasena, sin confirmar.",
+      "Registro 400/409 muestra el error y mantiene formulario.",
+      "Login 401 informa error y mantiene sesión ausente.",
+      "Login 200 muestra perfil, Navbar de usuario y GET con Bearer.",
+      "Perfil con campos null muestra Sin registrar; recarga conserva sesión.",
+      "Usuario normal en /admin/usuarios ve restricción sin GET administrativo.",
+      "Logout limpia sesión y vuelve a Inicio; /health sigue público.",
+      "Admin simulado ve enlace Administración y listado de solo lectura.",
+      "Texto con HTML en correo administrativo se muestra literalmente.",
+      "403 protegido conserva sesión; listado vacío tiene estado propio.",
+      "Fallo de red informa error y conserva sesión.",
+      "401 protegido borra sesión, actualiza Navbar y vuelve a login.",
+      "Atrás después del cierre de sesión vuelve a aplicar el guard."
+    ],
+    "errores_consola_observados": []
+  },
+  "integracion_real": {
+    "health_http": 200,
+    "vite_http": 200,
+    "navegador": "localhost:5173",
+    "catalogo": "1 alojamiento; tarjeta del ID 2 visible",
+    "detalle": "ID 2: Medellín, COP 180000, sin comodidades; correcto",
+    "guard_sin_sesion": "/perfil redirige a login",
+    "errores_consola_observados": [],
+    "auth_sprint2": "PENDIENTE: no se usaron cuentas reales ni se alteraron roles."
+  },
+  "limitaciones": [
+    "No se ha comprobado desde la SPA el flujo real S2 registro/login/perfil ni Admin 200/403.",
+    "Las credenciales de ID 6 no se conservaron; no se adivinaron ni restablecieron.",
+    "La prueba Admin usa respuestas sintéticas, no concede privilegios reales.",
+    "Sin publicación, PR ni ZIP final de S2; pendiente revisión e integración real."
+  ]
+}
