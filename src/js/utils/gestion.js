@@ -6,7 +6,7 @@ export function validarAlojamiento({ titulo, descripcion, ciudad, precio_noche }
   const entrada = String(precio_noche ?? '').trim();
   if (!/^\d+(\.\d{1,2})?$/.test(entrada)) return 'Ingrese un precio positivo con máximo dos decimales; utilice punto decimal.';
   const numero = Number(entrada);
-  if (!Number.isFinite(numero) || numero <= 0 || numero > 99999999.99) return 'El precio debe ser mayor que cero y caber en DECIMAL(10,2).';
+  if (!Number.isFinite(numero) || numero <= 0 || numero > 99999999.99) return 'El precio debe estar entre 0.01 y 99999999.99.';
   return null;
 }
 

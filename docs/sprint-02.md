@@ -1,6 +1,6 @@
 # Sprint 2: autenticación, sesión y autorización
 
-Estado al 4 de noviembre de 2026: implementación, 23 pruebas, build, contratos HTTP reales y recorrido autenticado en navegador aprobados. Quedan la revisión e integración del PR y la entrega de Luis en Q10. Las capturas sintéticas se distinguen de las nuevas capturas reales.
+Estado al 4 de noviembre de 2026: implementación, 23 pruebas, build, contratos HTTP reales y recorrido autenticado en navegador aprobados. PR #4 integrado posteriormente en main; queda la revisión y presentación personal en Q10. Las capturas sintéticas se distinguen de las nuevas capturas reales.
 
 ## Continuidad y alcance
 
@@ -54,7 +54,7 @@ La cuenta anterior 6 permanece normal. Se creó una única cuenta adicional, 7, 
 - [x] Implementación S2, 23 pruebas y build correctos.
 - [x] Contratos HTTP reales, incluido el rechazo de usuario normal y el acceso Admin autorizado.
 - [x] Login, perfil, recarga, Admin, logout y errores de formulario comprobados en navegador real.
-- [ ] Revisar e integrar el PR hacia main enlazado a Issue #3. La publicación de la rama y su PR está autorizada.
+- [x] PR #4 integrado en main; Issue #3 cerrado. Véase el commit de integración al final.
 - [ ] Luis adjunta el ZIP, enlaces y evidencias en la actividad específica de Q10.
 
 El ZIP de Entrega2 se genera desde el commit publicado, con README, fuentes, tests y estas evidencias; excluye .env, node_modules, dist y archivos privados. La guía externa LEEME-ENTREGA2.md registra el commit, PR, nombre del ZIP y su verificación. Entrega1 conserva su snapshot original. Este sprint no incluye CRUD ni comodidades administrativas de Sprint 3.
