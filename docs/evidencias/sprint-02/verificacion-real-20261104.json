@@ -1,0 +1,219 @@
+{
+  "fecha": "2026-11-04",
+  "nota": "HTTP real y recorrido de navegador contra Vite/Flask/MySQL locales; datos de prueba autorizados. Las pruebas sinteticas anteriores se conservan por separado.",
+  "pruebas": {
+    "total": 23,
+    "aprobadas": 23,
+    "fallidas": 0,
+    "build": "correcto; Vite 8.3.5, 89 módulos"
+  },
+  "publicas": [
+    {
+      "ruta": "/health",
+      "http": 200,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "ruta": "/api/v1/alojamientos",
+      "http": 200,
+      "cors": "http://localhost:5173",
+      "cantidad": 1
+    },
+    {
+      "ruta": "/api/v1/comodidades",
+      "http": 200,
+      "cors": "http://localhost:5173",
+      "cantidad": 0
+    },
+    {
+      "ruta": "/api/v1/alojamientos/2",
+      "http": 200,
+      "cors": "http://localhost:5173",
+      "fixture_preexistente": true
+    },
+    {
+      "ruta": "/api/v1/usuarios/perfil",
+      "http": 401,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "ruta": "/api/v1/admin/usuarios",
+      "http": 401,
+      "cors": "http://localhost:5173"
+    },
+    {
+      "servicio": "Vite",
+      "http": 200,
+      "html_spa": true
+    }
+  ],
+  "validacion": {
+    "fecha": "2026-11-04",
+    "tipo": "Servicios JavaScript reales frente a Flask local; no prueba visual de navegador",
+    "sin_cuentas_creadas": true,
+    "sin_roles_modificados": true,
+    "resultados": [
+      {
+        "operacion": "registro sin campos obligatorios",
+        "http": 400,
+        "resultado": "rechazado antes de crear cuenta o iniciar sesión"
+      },
+      {
+        "operacion": "login sin campos obligatorios",
+        "http": 400,
+        "resultado": "rechazado antes de crear cuenta o iniciar sesión"
+      },
+      {
+        "operacion": "perfil con credencial sintética inválida",
+        "http": 401,
+        "sesion_de_prueba_borrada": true,
+        "almacenamiento": "solo memoria del proceso Node"
+      },
+      {
+        "operacion": "preflight CORS de petición protegida",
+        "http": 200,
+        "origen_permitido": "http://localhost:5173",
+        "headers_permitidos": "authorization, content-type"
+      }
+    ]
+  },
+  "autenticacion": {
+    "fecha": "2026-11-04",
+    "origen": "API Flask local mediante servicios JS reales; sin verificación visual",
+    "cuenta_creada": true,
+    "solicitudes": [
+      {
+        "metodo": "POST",
+        "ruta": "/api/v1/usuarios/registro",
+        "http": 201
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/api/v1/usuarios/login",
+        "http": 200
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/api/v1/usuarios/perfil",
+        "http": 200
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/api/v1/admin/usuarios",
+        "http": 403
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/api/v1/usuarios/registro",
+        "http": 409
+      },
+      {
+        "metodo": "POST",
+        "ruta": "/api/v1/usuarios/login",
+        "http": 401
+      },
+      {
+        "metodo": "GET",
+        "ruta": "/api/v1/usuarios/perfil",
+        "http": 401
+      }
+    ],
+    "comprobaciones": [
+      "Registro creó una única cuenta normal.",
+      "Login y perfil legítimos; usuario_id coincide.",
+      "Admin rechazó al usuario normal con 403; sesión conservada.",
+      "Registro duplicado rechazado con 409; sin segunda cuenta.",
+      "Contraseña incorrecta de esta cuenta de prueba: 401; sesión previa conservada.",
+      "Cierre de sesión local y perfil posterior rechazado con 401."
+    ],
+    "sin_promocion": true,
+    "usuario": {
+      "id": 7,
+      "rol": "usuario"
+    },
+    "estado": "verificación HTTP normal aprobada",
+    "credenciales": "Solo en memoria temporal de este proceso; nunca en archivo, log ni respuesta."
+  },
+  "pendiente": [
+    "Revision e integracion del PR de Sprint 2.",
+    "Luis debe adjuntar ZIP, enlaces y evidencias en Q10."
+  ],
+  "promocion_autorizada": {
+    "fecha": "2026-11-04",
+    "usuario_id": 7,
+    "rol_anterior": "usuario",
+    "rol_actual": "admin",
+    "comando": "python -m scripts.promover_admin <correo de prueba autorizado>",
+    "usuario_6_sigue_normal": true,
+    "verificacion": "Consulta de ID/correo/rol posterior al script; sin consultar hashes ni contraseñas.",
+    "admin_http_200": 200,
+    "continuacion": "Contraseña del usuario 7 restablecida con autorización específica; nuevo login y listado Admin verificados."
+  },
+  "admin_real": {
+    "fecha": "2026-11-04",
+    "usuario_id": 7,
+    "rol_al_login": "admin",
+    "password_reset_autorizado": true,
+    "login_http": 200,
+    "perfil_http": 200,
+    "admin_http": 200,
+    "cantidad_usuarios": 4,
+    "usuario_6_normal": true,
+    "credenciales": "Solo memoria del proceso; no guardadas ni mostradas.",
+    "tipo": "HTTP real contra Flask/MySQL, sin prueba visual de navegador."
+  },
+  "navegador_real": {
+    "fecha": "2026-11-04",
+    "origen": "http://localhost:5173",
+    "api": "http://localhost:5000",
+    "usuario_id": 7,
+    "rol": "admin",
+    "sin_interceptar_api": true,
+    "resultados": [
+      {
+        "accion": "Login por formulario",
+        "http": 200,
+        "destino": "/perfil"
+      },
+      {
+        "accion": "Perfil visible y recarga",
+        "http": 200,
+        "usuario_id": 7,
+        "sesion_conservada": true
+      },
+      {
+        "accion": "Navbar Administracion y tabla real",
+        "http": 200,
+        "cantidad_usuarios": 4
+      },
+      {
+        "accion": "Cerrar sesion",
+        "destino": "/",
+        "navbar_publica": true
+      },
+      {
+        "accion": "Abrir Admin sin sesion",
+        "destino": "/login?next=%2Fadmin%2Fusuarios"
+      },
+      {
+        "accion": "Login con contrasena incorrecta",
+        "http": 401,
+        "mensaje": "Credenciales inválidas."
+      },
+      {
+        "accion": "Registro duplicado por formulario",
+        "http": 409,
+        "mensaje": "El correo ya está registrado."
+      }
+    ],
+    "estados_http": "Corroborados con el log de acceso local de Flask; no se publica el log completo.",
+    "console_errors_observados": 0,
+    "capturas": [
+      "sprint2-perfil-real-20261104.png",
+      "sprint2-admin-real-20261104.png",
+      "sprint2-registro-409-real-20261104.png"
+    ],
+    "limites": "Alta 201, rol normal/403 y limpieza 401 fueron HTTP real; esos recorridos visuales se probaron con fixtures sinteticos, no se atribuyen al navegador real.",
+    "credenciales": "Restablecimiento autorizado solo de usuario 7. Traspaso temporal cifrado, archivo cifrado eliminado, secreto y clave descartados. Sin contrasenas ni JWT en evidencias."
+  }
+}
