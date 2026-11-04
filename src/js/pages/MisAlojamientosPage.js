@@ -18,10 +18,10 @@ export async function mostrarMisAlojamientos({ contenedor, signal }) {
     const usuarioId = Number(obtenerSesion()?.usuario?.id);
     const propios = respuesta.data.filter((a) => Number(a.usuario_id) === usuarioId);
     lista.innerHTML = propios.length
-      ? `<div class="row g-4">${propios.map((a) => {
+      ? `<div class="row g-4 management-list">${propios.map((a) => {
         const id = Number(a.id);
         if (!Number.isSafeInteger(id) || id < 1) return '';
-        return `<div class="col-md-6 col-xl-4">${pintarTarjetaAlojamiento(a)}
+        return `<div class="col-md-6 col-xl-4 d-flex flex-column">${pintarTarjetaAlojamiento(a)}
           <a class="btn btn-outline-success w-100 mt-2" href="/alojamientos/${id}/editar" data-link>Editar y gestionar comodidades</a></div>`;
       }).join('')}</div>`
       : estadoVacio('Todavía no ha publicado alojamientos.');

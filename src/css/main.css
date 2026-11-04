@@ -142,3 +142,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 .danger-panel { max-width: 970px; border: 1px solid #f1cbc9; border-radius: 18px; background: #fff7f5; padding: 1.8rem; }
 .danger-panel p { color: #7c5654; }
 @media (max-width: 576px) { .management-card { padding: 1.15rem; } }
+
+/* La tarjeta y su enlace Editar comparten la altura de cada columna. */
+.management-list .stay-card { height: auto !important; flex: 1; }

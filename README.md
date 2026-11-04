@@ -126,4 +126,4 @@ Mis alojamientos filtra un catálogo público: ese filtro y ocultar enlaces no c
 
 La implementación sigue el tutorial estudiantil TUTORIAL-03.md: servicios API, utils/gestion.js, AlojamientoForm y ComodidadesSelector, cuatro páginas nuevas y ampliación de rutas/Navbar/detalle. Se conservan http.js, router.js, sesion.js, servicios anteriores, dependencias y las 23 pruebas previas.
 
-37/37 pruebas, sintaxis y build aprobados el 4 de noviembre. La integración CRUD real está pendiente de completar; consulte [Sprint 3](docs/sprint-03.md) y [Issue #5](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/5). Las pruebas con fetch simulado no demuestran cambios en MySQL.
+37/37 pruebas, sintaxis y build aprobados el 4 de noviembre. La creación y edición del propietario y dos vistas móviles están verificadas realmente; la integración Admin, relaciones y borrado sigue pendiente; consulte [Sprint 3](docs/sprint-03.md) y [Issue #5](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/5). Las pruebas con fetch simulado no demuestran cambios en MySQL.

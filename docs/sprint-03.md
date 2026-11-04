@@ -1,6 +1,6 @@
 # Sprint 3: CRUD y comodidades
 
-Estado al 4 de noviembre de 2026: código implementado; 37/37 pruebas, sintaxis y build correctos. Pruebas reales CRUD, capturas, revisión, publicación y ZIP todavía pendientes. No se presenta un mock como evidencia de MySQL.
+Estado al 4 de noviembre de 2026: código implementado; 37/37 pruebas, sintaxis y build correctos. Creación y edición del propietario verificadas con datos reales, además de vistas móviles. PR #6 publicado en borrador; faltan Admin, relaciones, borrado, revisión y ZIP final. No se presenta un mock como evidencia de MySQL.
 
 ## Base y proceso
 
@@ -33,8 +33,33 @@ Flujo: formulario → validación y cuatro campos normalizados → servicio JS �
 - [ ] CRUD real con propietario y Admin; rechazo real 403 del ajeno.
 - [ ] Comodidades 201/409, asociación/reemplazo/[] y error 400.
 - [ ] Confirmación de borrado, 204 y consulta posterior 404.
-- [ ] Capturas reales y adaptación móvil.
-- [ ] Commit, push, PR en borrador, revisión y merge autorizado.
+- [x] Capturas reales de creación, Mis alojamientos y edición móvil a 390 px.
+- [ ] Capturas de los recorridos Admin y comodidades restantes.
+- [x] Commit, push y [PR #6 en borrador](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/6), enlazado a Issue #5.
+- [ ] Revisión e integración después de completar las pruebas reales.
 - [ ] ZIP de Entrega3 y presentación por Luis en Q10.
 
 Se conserva el alojamiento ficticio de Sprint 1. Las pruebas nuevas deben utilizar registros claramente identificados como desechables y cuentas de prueba autorizadas. No se incluyen reservas, pagos ni subida de fotos. El Trabajo 4 consolidará lo integrado sin funciones nuevas.
+
+## Prueba real del propietario y revisión móvil
+
+El usuario de prueba 6 inició sesión y creó el alojamiento ficticio desechable 3. Flask respondió 201 y asignó usuario_id 6 sin que el formulario enviara ese campo. El formulario rechazó título vacío y precio cero. Al editar la ciudad a Bogotá, PATCH respondió 200 y el dato persistió al recargar. El alojamiento 2 de Sprint 1 se conserva sin cambios.
+
+Las peticiones directas con esa cuenta comprobaron 400 para campos obligatorios ausentes, precio cero y comodidad inexistente; crear comodidad con rol normal dio 403. Son verificaciones reales HTTP, separadas de los 37 tests con fetch simulado.
+
+A 390 × 844 px se detectó que la clase h-100 de la tarjeta ocupaba toda la columna y dejaba su enlace Editar fuera de ella: la tarjeta siguiente lo tapaba. Mis alojamientos ahora usa columnas flexibles y una regla de altura limitada a esa vista. Se conservó el componente público. Las filas quedan separadas por 24 px, sin desbordamiento horizontal. Las 37 pruebas y el build se repitieron y pasaron después del ajuste.
+
+[Evidencia real del propietario](evidencias/sprint-03/propietario-real-20261104.json), [creación](evidencias/sprint-03/sprint3-creado-real-20261104.png), [lista móvil](evidencias/sprint-03/sprint3-mis-alojamientos-movil-real-20261104.png) y [edición móvil](evidencias/sprint-03/sprint3-edicion-movil-real-20261104.png).
+
+La automatización del navegador se atascó al intentar abrir window.confirm. No se observó DELETE en el log y GET del alojamiento 3 continuó respondiendo 200. Esa confirmación y el borrado todavía no se marcan como aprobados. El registro se conserva para terminar la prueba de comodidades antes de eliminarlo.
+
+## Recorrido para entender el código
+
+1. Abrir CrearAlojamientoPage.js: submit recibe el evento y preventDefault evita recargar. datosDelFormulario lee los campos; validarAlojamiento decide si se puede enviar.
+2. Seguir prepararAlojamiento en utils/gestion.js: recorta espacios y convierte el precio a número. El objeto tiene cuatro campos y no contiene usuario_id.
+3. Abrir crearAlojamiento en api/alojamientos.api.js: llama a solicitarJSON con POST y el token de la sesión. Flask determina la propiedad y guarda el registro en MySQL.
+4. Volver a la página: await espera la respuesta; el ID recibido forma la URL del detalle. El caso observado fue /alojamientos/3.
+5. En EditarAlojamientoPage.js comparar las tres acciones: Guardar cambios envía campos, Guardar comodidades reemplaza asociaciones y Eliminar necesita confirmación. Son peticiones independientes.
+6. En MisAlojamientosPage.js el filtro organiza los registros del usuario; puedeModificar orienta la interfaz. Ninguna de esas funciones sustituye la autorización de Flask.
+
+Para la explicación final conviene recorrer una acción completa antes de revisar todos los archivos. Luis revisará los resultados y el código antes de presentar los cuatro trabajos; el asistente no realiza la presentación en Q10.
