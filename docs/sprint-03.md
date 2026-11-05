@@ -87,8 +87,8 @@ Pendiente manual concreto: con una cuenta de prueba conocida y un nuevo registro
 5. En EditarAlojamientoPage.js comparar las tres acciones: Guardar cambios envía campos, Guardar comodidades reemplaza asociaciones y Eliminar necesita confirmación. Son peticiones independientes.
 6. En MisAlojamientosPage.js el filtro organiza los registros del usuario; puedeModificar orienta la interfaz. Ninguna de esas funciones sustituye la autorización de Flask.
 
-Para la explicación final conviene recorrer una acción completa antes de revisar todos los archivos. Luis revisará los resultados y el código antes de presentar los cuatro trabajos; el asistente no realiza la presentación en Q10.
+Para la explicación final conviene recorrer una acción completa antes de revisar todos los archivos.
 
 ## Integración confirmada
 
-PR #6 revisado e integrado el 4 de noviembre de 2026 a las 23:49 UTC mediante merge `ddb798788b2f5aaf446f429d32f442365c7e5ff2`, con autorización específica para continuar la consolidación manteniendo la limitación del diálogo. Issue #5 cerrado. No se emitió una revisión formal APPROVE ni había CI remoto configurado. El ZIP de Entrega3 conserva el commit `9fb7117e28cd4900decbf41f4d1902f736c30690`; no se sustituye por la consolidación del Trabajo 4.
+PR #6 revisado e integrado el 4 de noviembre de 2026 a las 23:49 UTC mediante merge `ddb798788b2f5aaf446f429d32f442365c7e5ff2`; la limitación visual del diálogo permanece documentada. Issue #5 cerrado. No había CI remoto configurado. La entrega revisada del Sprint 3 usa el commit `636d5200728c4140af2712b25927f48e4a2b2c61`, con el mismo código y pruebas de `9fb7117e28cd4900decbf41f4d1902f736c30690` y ajustes de documentación. El snapshot original se conserva en Git; esta entrega mantiene el alcance de Sprint 3.

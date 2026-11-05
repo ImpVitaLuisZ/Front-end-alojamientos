@@ -35,8 +35,6 @@ Consolidación del frontend de los tres tutoriales, según la rúbrica «Entrega
 6. **Comodidades:** el selector lee los IDs marcados. Guardar reemplaza la lista completa; [] retira asociaciones sin borrar el catálogo.
 7. **Errores y pruebas:** 400 informa datos inválidos, 401 protegido borra sesión, 403 conserva sesión, 404 indica ausencia y 409 duplicado. Leer un test de cada grupo y compararlo con la evidencia real correspondiente.
 
-La presentación en Q10 corresponde a Luis después de revisar el resultado y el código. No se ha presentado ninguna actividad automáticamente.
-
 ## Resultado de la instalación independiente
 
 Se clonó la rama publicada docs/frontend-entrega-final desde GitHub en una carpeta distinta del proyecto de trabajo. `npm install` terminó con exit 0, sin modificar package-lock.json y sin vulnerabilidades reportadas por npm. Node v24.21.0 y npm 11.19.0. Se copió únicamente .env.example; no se copiaron credenciales del backend.
