@@ -19,6 +19,7 @@ Consolidación del frontend de los tres tutoriales, según la rúbrica «Entrega
 
 - En Tutorial 2 se conservó http.js y el wrapper obtenerJSON para compatibilidad con la SPA pública: el texto del tutorial usaba un nombre distinto y omitía esa exportación. No se inventaron endpoints.
 - El detalle público y las ilustraciones CSS existentes se conservaron. En Sprint 3 se corrigió la altura de tarjetas de Mis alojamientos para evitar solapamiento en móvil; no cambió el contrato de Flask.
+- La revisión independiente encontró 12 px de desbordamiento horizontal del detalle a 390 px. Se usa g-4 en móvil y se conserva g-lg-5 en escritorio; no se oculta el desbordamiento mediante CSS.
 - La consolidación actualiza el pie que todavía decía Sprint 1 y expresa el límite de precio sin terminología de base de datos. No cambia rutas, permisos, dependencias ni lógica de negocio.
 - Las pruebas automatizadas simulan fetch; las evidencias HTTP y visuales reales se identifican por separado. Los datos ficticios persistidos están rotulados como prueba.
 - Falta observar manualmente Confirmar/Cancelar y la redirección del borrado: la herramienta no pudo controlar window.confirm. DELETE 204 y GET 404 fueron verificados por los servicios JS contra Flask/MySQL. La integración de PR 6 se autorizó conservando esa limitación; no equivale a afirmar aceptación visual completa.
