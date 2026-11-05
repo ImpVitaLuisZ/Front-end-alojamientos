@@ -63,4 +63,4 @@ Las rúbricas originales de Trabajos 3 y 4 se leyeron completas: Trabajo 3 añad
 
 ## Integración posterior
 
-PR #4 revisado e integrado el 4 de noviembre de 2026, con autorización específica de Luis. Merge en main: d31da64148ba38a2338e44514ec7ed5132b7f77d. Issue #3 cerrado. Sin revisión formal APPROVE. Las 23 pruebas se ejecutaron nuevamente al comenzar Sprint 3 y pasaron. El ZIP de Entrega2 conserva e7fe1d6cb618cc830d732cd8bc2c81af5b43305a; no se reemplaza por un snapshot de Sprint 3.
+PR #4 revisado e integrado el 4 de noviembre de 2026. Merge en main: d31da64148ba38a2338e44514ec7ed5132b7f77d. Issue #3 cerrado. Las 23 pruebas se ejecutaron nuevamente al comenzar Sprint 3 y pasaron. El ZIP de Entrega2 conserva e7fe1d6cb618cc830d732cd8bc2c81af5b43305a; no se reemplaza por un snapshot de Sprint 3.

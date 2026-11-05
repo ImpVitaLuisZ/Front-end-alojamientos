@@ -87,4 +87,4 @@ Pendiente manual concreto: con una cuenta de prueba conocida y un nuevo registro
 5. En EditarAlojamientoPage.js comparar las tres acciones: Guardar cambios envía campos, Guardar comodidades reemplaza asociaciones y Eliminar necesita confirmación. Son peticiones independientes.
 6. En MisAlojamientosPage.js el filtro organiza los registros del usuario; puedeModificar orienta la interfaz. Ninguna de esas funciones sustituye la autorización de Flask.
 
-Para la explicación final conviene recorrer una acción completa antes de revisar todos los archivos. Luis revisará los resultados y el código antes de presentar los cuatro trabajos; el asistente no realiza la presentación en Q10.
+Para la explicación final conviene recorrer una acción completa antes de revisar todos los archivos.
