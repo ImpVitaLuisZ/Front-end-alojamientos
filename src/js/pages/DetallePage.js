@@ -16,7 +16,7 @@ export async function mostrarDetalle({ contenedor, params, signal }) {
     const comodidades = Array.isArray(alojamiento.comodidades) ? alojamiento.comodidades : [];
     region.innerHTML = `
       <div class="detail-banner" aria-hidden="true"><i class="bi bi-buildings-fill"></i><span>DETALLE DEL ALOJAMIENTO</span></div>
-      <div class="row g-5 mt-1">
+      <div class="row g-4 g-lg-5 mt-1">
         <div class="col-lg-8">
           <span class="eyebrow"><i class="bi bi-geo-alt me-1"></i>${escapeHtml(alojamiento.ciudad)}</span>
           <h1 class="display-6 fw-bold mt-2">${escapeHtml(alojamiento.titulo)}</h1>

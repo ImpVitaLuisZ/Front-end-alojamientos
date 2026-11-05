@@ -1,6 +1,8 @@
-# Frontend Alojamientos — Sprints 1, 2 y 3
+# Aloja: frontend de Alojamientos
 
 SPA de catálogo público, autenticación y gestión de alojamientos construida con HTML5, CSS3, JavaScript ES Modules, Bootstrap 5 y Vite. Consume la API Flask del repositorio independiente `api-alojamientos`, correspondiente al Sprint 3 del backend.
+
+El objetivo es consultar alojamientos y sus comodidades, registrar e identificar usuarios y permitir que propietarios y administradores gestionen los registros según sus permisos. El Trabajo 4 consolida los tres tutoriales; no añade funcionalidades.
 
 ## Preparación
 
@@ -9,7 +11,9 @@ Necesita Node compatible con Vite 8 (Node 22.12+; desarrollo comprobado con Node
 Desde la raíz del frontend, en PowerShell:
 
 ```powershell
-npm ci
+git clone https://github.com/ImpVitaLuisZ/Front-end-alojamientos.git
+cd Front-end-alojamientos
+npm install
 Copy-Item .env.example .env
 npm run dev
 ```
@@ -28,7 +32,8 @@ No agregue `/api/v1` a esta URL: `/health` vive en la raíz. Reinicie Vite cuand
 
 | Comando | Función |
 | --- | --- |
-| `npm ci` | Instalar las versiones fijadas en `package-lock.json` |
+| `npm install` | Instalar dependencias según package.json y package-lock.json; comando solicitado en la rúbrica |
+| `npm ci` | Reinstalación estricta con las versiones fijadas en package-lock.json |
 | `npm run dev` | Servir la SPA en `localhost:5173`, con puerto estricto |
 | `npm test` | Ejecutar 37 pruebas: 9 de Sprint 1, 14 de Sprint 2 y 14 de Sprint 3 |
 | `npm run build` | Generar la distribución en `dist/` |
@@ -36,7 +41,7 @@ No agregue `/api/v1` a esta URL: `/health` vive en la raíz. Reinicie Vite cuand
 
 Las únicas dependencias directas son `bootstrap` (`5.3`), `bootstrap-icons` (`^1.13.1`) y, para desarrollo, `vite` (`^8.0.14`). `npm install` genera o actualiza el lockfile; para reproducir la instalación, use `npm ci`.
 
-Preview suele usar otro puerto, que puede no estar autorizado por el CORS de Flask. Las pruebas con la API deben hacerse en `localhost:5173`. Ni el build ni los tests requieren Flask encendido; los tests de API simulan `fetch` y no sustituyen las pruebas reales de navegador.
+Preview usa 4173 por defecto. Para verificar también la API con el backend del curso, cierre dev y use `npm run preview -- --host localhost --port 3000 --strictPort`: el backend utilizado autoriza localhost:3000 y localhost:5173. Confirme los orígenes permitidos en su propia configuración; no desactive CORS. `npm run dev -- --port 3000` sirve para una revisión aislada cuando 5173 está ocupado. Ni el build ni los tests requieren Flask encendido; los tests de API simulan `fetch` y no sustituyen las pruebas reales de navegador.
 
 ## Rutas y contrato HTTP
 
@@ -126,4 +131,25 @@ Mis alojamientos filtra un catálogo público: ese filtro y ocultar enlaces no c
 
 La implementación sigue el tutorial estudiantil TUTORIAL-03.md: servicios API, utils/gestion.js, AlojamientoForm y ComodidadesSelector, cuatro páginas nuevas y ampliación de rutas/Navbar/detalle. Se conservan http.js, router.js, sesion.js, servicios anteriores, dependencias y las 23 pruebas previas.
 
-37/37 pruebas, sintaxis y build aprobados el 4 de noviembre. Verificados realmente: creación/edición, Admin, permisos 403, comodidades 201/409, asociaciones con dos elementos y [], y DELETE 204 seguido de GET 404. Las vistas móviles se revisaron a 390 px. Queda pendiente comprobar manualmente Confirmar/Cancelar: la herramienta del navegador se bloqueó en window.confirm y los borrados se verificaron mediante los servicios JS reales. El PR #6 permanece en borrador, sin merge; consulte [Sprint 3](docs/sprint-03.md) y [Issue #5](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/5). Las pruebas con fetch simulado no demuestran cambios en MySQL.
+37/37 pruebas, sintaxis y build aprobados el 4 de noviembre. Verificados realmente: creación/edición, Admin, permisos 403, comodidades 201/409, asociaciones con dos elementos y [], y DELETE 204 seguido de GET 404. Las vistas móviles se revisaron a 390 px. Queda pendiente comprobar manualmente Confirmar/Cancelar: la herramienta del navegador se bloqueó en window.confirm y los borrados se verificaron mediante los servicios JS reales. El PR #6 está integrado en main; consulte [Sprint 3](docs/sprint-03.md) y [Issue #5](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/5). Las pruebas con fetch simulado no demuestran cambios en MySQL.
+
+## Entrega final y evidencias
+
+| Etapa | Documentación | Seguimiento |
+| --- | --- | --- |
+| SPA pública | [Sprint 1](docs/sprint-01.md) | [Issue 1](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/1), [PR 2 integrado](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/2) |
+| Autenticación y roles | [Sprint 2](docs/sprint-02.md) | [Issue 3](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/3), [PR 4 integrado](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/4) |
+| CRUD y comodidades | [Sprint 3](docs/sprint-03.md) | [Issue 5](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/5), [PR 6 integrado](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/6) |
+| Consolidación | [Trabajo 4](docs/entrega-final.md) | [Issue 7](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/issues/7) |
+
+Capturas de los recorridos reales:
+
+![Catálogo consultado a Flask](docs/evidencias/sprint-01/sprint1-catalogo-real-con-datos.jpg)
+![Perfil y sesión](docs/evidencias/sprint-02/sprint2-perfil-real-20261104.png)
+![Detalle y comodidades](docs/evidencias/sprint-03/sprint3-comodidades-detalle-real-20261104.png)
+
+Cada guía enlaza sus resultados HTTP, capturas adicionales y límites. Los registros son ficticios de la base local del curso; el ZIP no contiene una base de datos ni contraseñas. Las capturas históricas del alojamiento 3 preceden su eliminación autorizada. Los ejemplos sintéticos están identificados y no sustituyen la integración real.
+
+La revisión visual de Confirmar/Cancelar sigue pendiente por una limitación de la herramienta del navegador. El código conserva window.confirm; DELETE real 204 y GET posterior 404 sí se verificaron. Consulte el procedimiento manual en Sprint 3 antes de dar por concluida la aceptación completa.
+
+La [verificación independiente del Trabajo 4](docs/entrega-final.md#resultado-de-la-instalación-independiente) incluye salidas reales de instalación, 37 pruebas y build, más capturas de dev/preview en escritorio, tableta y móvil. Quedan identificadas la confirmación manual del borrado y la captura de terminal de tests/build antes de presentar.

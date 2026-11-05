@@ -1,0 +1,77 @@
+{
+  "commit_verificado": "52fb6344e94be8a8caa596b7534f195b2794eae6",
+  "origen": "clone desde GitHub, rama docs/frontend-entrega-final",
+  "node": "v24.21.0",
+  "npm": "11.19.0",
+  "npm_install": 0,
+  "lockfile_sin_cambios": true,
+  "npm_test": {
+    "exit": 0,
+    "pass": 37,
+    "fail": 0
+  },
+  "npm_build": 0,
+  "sintaxis_js": 46,
+  "git_limpio": true,
+  "dev_preview": {
+    "dev": "npm run dev -- --port 3000 --strictPort; Inicio y catálogo real correctos",
+    "preview": "npm run preview -- --host localhost --port 3000 --strictPort; recursos compilados, detalle real y recarga directa correctos",
+    "guard_sin_sesion": "/mis-alojamientos redirige a /login?next=%2Fmis-alojamientos",
+    "consola": "sin errores ni advertencias observados durante la revisión de la aplicación",
+    "estado_procesos": "dev/preview de la copia independiente detenidos intencionadamente al terminar; API original conservada"
+  },
+  "secretos": "solo .env.example público; sin credenciales de cuentas o backend",
+  "commit_instalacion_inicial": "21e06e023336cc66c82606aaf06d481b1ba14313",
+  "ajuste_posterior": "Actualización fast-forward desde GitHub; tests y build repetidos tras corregir 12 px de desbordamiento en móvil.",
+  "fecha_utc": "2026-11-05",
+  "responsive": {
+    "tableta": {
+      "viewport": 768,
+      "clientWidth": 753,
+      "scrollWidth": 753
+    },
+    "movil_antes": {
+      "viewport": 390,
+      "clientWidth": 375,
+      "scrollWidth": 387
+    },
+    "movil_despues": {
+      "viewport": 390,
+      "clientWidth": 375,
+      "scrollWidth": 375
+    },
+    "ajuste": "g-4 g-lg-5; viewport restaurado"
+  },
+  "capturas": [
+    "inicio-dev-real.png",
+    "detalle-preview-tablet-real.png",
+    "detalle-preview-movil-real.png"
+  ],
+  "limites": [
+    "Confirmar/Cancelar del borrado pendiente de revisión manual; integración DELETE real verificada en Sprint 3.",
+    "La captura visual de la salida de tests/build no pudo obtenerse: la vista local de registros dio timeout y el navegador bloqueó su página interna de error. Se conservan las salidas de texto completas; no se fabrica una captura de terminal.",
+    "La consolidación está publicada en una rama; su PR y merge final se registran en la guía externa de entrega."
+  ],
+  "consulta_publica_final": [
+    {
+      "ruta": "/health",
+      "http": 200,
+      "ids": null
+    },
+    {
+      "ruta": "/api/v1/alojamientos",
+      "http": 200,
+      "ids": [
+        2
+      ]
+    },
+    {
+      "ruta": "/api/v1/comodidades",
+      "http": 200,
+      "ids": [
+        2,
+        3
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Sprint 3: CRUD y comodidades
 
-Estado al 4 de noviembre de 2026: código implementado; 37/37 pruebas, sintaxis y build correctos. Verificados con Flask/MySQL reales: propietario, Admin, rechazo de usuario ajeno, comodidades, asociaciones y borrados 204/404. La comprobación visual de Confirmar/Cancelar sigue pendiente por bloqueo del navegador de pruebas. PR #6 permanece en borrador para revisión; no está integrado. El ZIP de esta versión conserva expresamente esa limitación. No se presenta un mock como evidencia de MySQL.
+Estado al 4 de noviembre de 2026: código implementado; 37/37 pruebas, sintaxis y build correctos. Verificados con Flask/MySQL reales: propietario, Admin, rechazo de usuario ajeno, comodidades, asociaciones y borrados 204/404. La comprobación visual de Confirmar/Cancelar sigue pendiente por bloqueo del navegador de pruebas. PR #6 se integró en main el 4 de noviembre de 2026; véase la nota de integración al final. El ZIP de esta versión conserva expresamente esa limitación. No se presenta un mock como evidencia de MySQL.
 
 ## Base y proceso
 
@@ -36,8 +36,8 @@ Flujo: formulario → validación y cuatro campos normalizados → servicio JS �
 - [ ] Confirmar y Cancelar en el diálogo del navegador; limitación descrita abajo.
 - [x] Capturas reales de creación, Mis alojamientos y edición móvil a 390 px.
 - [x] Capturas del aviso 409 de Admin, permisos y detalle con comodidades.
-- [x] Commit, push y [PR #6 en borrador](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/6), enlazado a Issue #5.
-- [ ] Revisión e integración después de completar las pruebas reales.
+- [x] Commit, push y [PR #6 integrado](https://github.com/ImpVitaLuisZ/Front-end-alojamientos/pull/6), enlazado a Issue #5.
+- [x] Revisión del código e integración autorizada en main, conservando la limitación visual pendiente.
 - [ ] Revisar el ZIP de Entrega3 contra su VERIFICACION-ENTREGA3.json y cerrar la comprobación manual pendiente.
 - [ ] Presentación por Luis en Q10 después de entender y revisar el código.
 
@@ -88,3 +88,7 @@ Pendiente manual concreto: con una cuenta de prueba conocida y un nuevo registro
 6. En MisAlojamientosPage.js el filtro organiza los registros del usuario; puedeModificar orienta la interfaz. Ninguna de esas funciones sustituye la autorización de Flask.
 
 Para la explicación final conviene recorrer una acción completa antes de revisar todos los archivos. Luis revisará los resultados y el código antes de presentar los cuatro trabajos; el asistente no realiza la presentación en Q10.
+
+## Integración confirmada
+
+PR #6 revisado e integrado el 4 de noviembre de 2026 a las 23:49 UTC mediante merge `ddb798788b2f5aaf446f429d32f442365c7e5ff2`, con autorización específica para continuar la consolidación manteniendo la limitación del diálogo. Issue #5 cerrado. No se emitió una revisión formal APPROVE ni había CI remoto configurado. El ZIP de Entrega3 conserva el commit `9fb7117e28cd4900decbf41f4d1902f736c30690`; no se sustituye por la consolidación del Trabajo 4.
