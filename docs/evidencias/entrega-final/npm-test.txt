@@ -1,0 +1,49 @@
+
+> frontend-alojamientos@0.0.0 test
+> node --test
+
+✔ usa las cuatro rutas reales y conserva los contratos JSON (7.3578ms)
+✔ preserva status y mensaje de error HTTP del backend (2.1981ms)
+✔ informa cuando Flask no está disponible (1.1462ms)
+✔ registro envía solo correo/contraseña y conserva 201, 400 y 409 (14.4746ms)
+✔ login usa POST JSON sin Bearer y conserva la respuesta (2.3744ms)
+✔ perfil y administración usan GET Bearer y conservan AbortSignal (14.0636ms)
+✔ 401 público y 403 protegido conservan la sesión (12.9687ms)
+✔ 401 protegido limpia su sesión, incluso sin JSON, sin borrar una sesión nueva (4.8119ms)
+✔ POST alojamiento usa exactamente los 4 campos y Authorization (7.8197ms)
+✔ PATCH alojamiento no crea endpoints de perfil ni altera el dueño (1.6698ms)
+✔ PATCH comodidades reemplaza relación usando comodidades_ids, incluso [] (2.2436ms)
+✔ DELETE 204 se procesa como null sin invocar respuesta.json() (1.5441ms)
+✔ POST comodidad solo envía nombre; 409 se muestra desde Flask (4.9049ms)
+✔ escapeHtml neutraliza contenido HTML recibido de la API (5.9818ms)
+✔ formatearCOP muestra moneda colombiana (97.9103ms)
+✔ resumen acorta textos largos sin alterar textos cortos (0.6915ms)
+✔ formulario no inserta HTML recibido como título ni descripción (7.4807ms)
+✔ selector de comodidades escapa nombres y marca las ya asociadas (7.0012ms)
+✔ rutas CRUD y sección personal exigen sesión, sin confundir ID con nuevo (4.9137ms)
+✔ nueva comodidad está protegida por rol y catálogo sigue público (2.5696ms)
+✔ el login solo permite destinos locales conocidos por la SPA (1.0077ms)
+✔ valida campos obligatorios, límites y precio DECIMAL(10,2) (4.8857ms)
+✔ el objeto enviado solo contiene los cuatro campos aceptados por Flask (4.5502ms)
+✔ los permisos visuales son distintos de la autorización del backend (1.1424ms)
+✔ comodidades admite selección vacía, sin llamadas ni reglas de servidor inventadas (3.4728ms)
+✔ registro y login son rutas públicas (7.0189ms)
+✔ perfil requiere sesión y administración también requiere rol (5.7677ms)
+✔ no inventa actualización de perfil ni rutas de reservas (1.1963ms)
+✔ la ruta de catálogo acepta barra final y parámetros de URL (5.9703ms)
+✔ el detalle reconoce solo IDs enteros positivos (1.4105ms)
+✔ una dirección desconocida muestra página 404 (0.8055ms)
+✔ almacena usuario y token en sessionStorage y puede cerrar la sesión (4.5991ms)
+✔ permite reconocer un rol admin sólo para la interfaz (0.8829ms)
+✔ rechaza datos corruptos, sin usuario o rol permitido (2.0446ms)
+✔ registro valida email, mínimo de contraseña y confirmación (4.9614ms)
+✔ login exige ambos campos (0.8841ms)
+✔ redirige únicamente a vistas privadas conocidas e impide URLs externas (2.3251ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1672.465

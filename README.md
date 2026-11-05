@@ -151,3 +151,5 @@ Capturas de los recorridos reales:
 Cada guía enlaza sus resultados HTTP, capturas adicionales y límites. Los registros son ficticios de la base local del curso; el ZIP no contiene una base de datos ni contraseñas. Las capturas históricas del alojamiento 3 preceden su eliminación autorizada. Los ejemplos sintéticos están identificados y no sustituyen la integración real.
 
 La revisión visual de Confirmar/Cancelar sigue pendiente por una limitación de la herramienta del navegador. El código conserva window.confirm; DELETE real 204 y GET posterior 404 sí se verificaron. Consulte el procedimiento manual en Sprint 3 antes de dar por concluida la aceptación completa.
+
+La [verificación independiente del Trabajo 4](docs/entrega-final.md#resultado-de-la-instalación-independiente) incluye salidas reales de instalación, 37 pruebas y build, más capturas de dev/preview en escritorio, tableta y móvil. Quedan identificadas la confirmación manual del borrado y la captura de terminal de tests/build antes de presentar.

@@ -1,0 +1,16 @@
+
+> frontend-alojamientos@0.0.0 build
+> vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 98 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               0.70 kB │ gzip:  0.40 kB
+dist/assets/bootstrap-icons-DJdhg9lH.woff2  134.01 kB
+dist/assets/bootstrap-icons-BHUGvtHM.woff   180.28 kB
+dist/assets/index-CUN7qelv.css              321.31 kB │ gzip: 48.13 kB
+dist/assets/index-CtOOxoq3.js               117.62 kB │ gzip: 34.30 kB
+
+✓ built in 2.14s
